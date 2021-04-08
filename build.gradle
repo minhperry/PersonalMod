@@ -16,8 +16,10 @@ buildscript {
 
 apply plugin: 'net.minecraftforge.gradle.forge'
 
-version = "0.2.2"
-group= "net.minhperry"
+// build.gradle and ModInfo.java and mcmod.info
+
+version = "0.3.1"
+group= "net.minhperry:ecx:0.3.1"
 archivesBaseName = "Suichat"
 sourceCompatibility = targetCompatibility = 1.8
 

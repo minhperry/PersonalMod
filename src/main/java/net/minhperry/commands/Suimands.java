@@ -45,10 +45,10 @@ public class Suimands extends CommandBase {
                     "§bYou are currently running Suichat on version " + ModInfo.VERSION + "." + "\n" +
                     "§b--------------------------------------" + "\n" +
                     "§9§l What's new in Suichat " + ModInfo.VERSION + " ?" + "\n" +
-                    "§b ➜ §lCustomizability! §r§bYou can now edit bot prefix and bot color!" + "\n" +
-                    "§b ➜ Run \".suichat config\" to open configuration menu." + "\n" +
+                    "§b ➜ Added message hiders." + "\n" +
+                    "§b ➜ Tweaks Hypixel's default friend/guild join/leave messages." + "\n" +
                     "§b--------------------------------------" + "\n" +
-                    "§3.suichat config/cfg §l➡ Open the configuration menu." + "\n" +
+                    "§3/suichat config/cfg §l➡ Open the configuration menu." + "\n" +
                     "§bYou can also use \"/sc\" or \"/sui\" as command aliases."
             ));
             return;
@@ -57,6 +57,7 @@ public class Suimands extends CommandBase {
         switch (subcommand) {
             case "config":
             case "cfg":
+            case "cf":
                 ModCore.getInstance().getGuiHandler().open(Suichat.config.gui());
                 break;
             default:
@@ -84,11 +85,14 @@ public class Suimands extends CommandBase {
                 );
                 break;
             case "ez":
+                /*
                 player.addChatMessage((IChatComponent) new ChatComponentText("§a§lClick here to copy ez.")
                         .getChatStyle()
                         .setChatHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ChatComponentText("Clicky!")))
                         .setChatClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/suichatez"))
                 );
+                 */
+                player.addChatMessage(new ChatComponentText("§cThis command is currently disabled"));
                 break;
         }
     }

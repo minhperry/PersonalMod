@@ -58,26 +58,35 @@ public class Config extends Vigilant {
             type = PropertyType.SWITCH,
             name = "Fancier Guild Join/Leave Message",
             description = "Tweaks the default guild join/leave message.",
-            category = "Guild Chat",
-            subcategory = "Fix"
+            category = "General Chat",
+            subcategory = "Tweaks"
     )
-    public boolean isFancier = false;
+    public boolean isGuildFancier = false;
+
+    @Property(
+            type = PropertyType.SWITCH,
+            name = "Fancier Friend Join/Leave Message",
+            description = "Tweaks the default friend join/leave message.",
+            category = "General Chat",
+            subcategory = "Tweaks"
+    )
+    public boolean isFriendFancier = false;
 
     @Property(
             type = PropertyType.SWITCH,
             name = "ArabicDuck Hider",
             description = "Hide all messages from ArabicDuck",
-            category = "Guild Chat",
-            subcategory = "Bald"
+            category = "Hiders",
+            subcategory = "QUADRUPLE SHINY BALD FAT"
     )
     public boolean hideDuck = false;
 
     @Property(
             type = PropertyType.TEXT,
             name = "EZ",
-            description = "§b[WIP] §r§fUse \"/suichat ez\" to copy the word into chat.",
+            description = "§b[DISABLED] §r§fUse \"/suichat ez\" to copy the word into chat.",
             category = "General Chat",
-            subcategory = "Fix"
+            subcategory = "Tweaks"
     )
     public String ez = "";
 
@@ -85,8 +94,8 @@ public class Config extends Vigilant {
             type = PropertyType.SWITCH,
             name = "Housing Join/Leave Message",
             description = "Hide the annoying chat messages in Housing.",
-            category = "General Chat",
-            subcategory = "Fix"
+            category = "Hiders",
+            subcategory = "Housing"
     )
     public boolean hideHousingMsg = false;
 
