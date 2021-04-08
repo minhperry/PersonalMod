@@ -8,15 +8,16 @@ import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minhperry.Suichat;
+import net.minhperry.utils.Utils;
 
-public class ChatListener {
+public class SuibotListener {
 
     public static Minecraft mc = Minecraft.getMinecraft();
 
     @SubscribeEvent(receiveCanceled = true, priority = EventPriority.HIGHEST)
     public void onMessageReceived(final ClientChatReceivedEvent event) {
 
-        // if (!Utils.isOnHypixel()) return;
+        if (!Utils.isOnHypixel()) return;
 
         final String message = StringUtils.stripControlCodes(event.message.getUnformattedText());
 
@@ -74,14 +75,23 @@ public class ChatListener {
                 break;
         }
 
-        String botName = Suichat.config.prefix;
+        String botName;
+        switch (Suichat.config.prefix) {
+            case 0:
+            default:
+                botName = "BOT";
+                break;
+            case 1:
+                botName = "DISCORD";
+                break;
+        }
 
         if (message.startsWith("Guild > [VIP] Suibot [exGM]:")) {
             event.setCanceled(true);
 
             String[] msg = message.trim().split("\\s*:\\s*");
-            String sender = botColor + "[" + botName + "] " + msg[1] + EnumChatFormatting.WHITE;
-            String guild = EnumChatFormatting.DARK_GREEN + "Guild > ";
+            String sender = botColor + "[" + botName + "] " + msg[1] + "§f";
+            String guild = "§2Guild > ";
             String splittedMessages = "";
 
             for (int i = 2; i < msg.length; i++) {

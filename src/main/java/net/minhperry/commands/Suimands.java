@@ -6,9 +6,12 @@ import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
+import net.minecraft.event.ClickEvent;
+import net.minecraft.event.HoverEvent;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.IChatComponent;
 import net.minhperry.ModInfo;
 import net.minhperry.Suichat;
 
@@ -24,7 +27,7 @@ public class Suimands extends CommandBase {
     public List<String> getCommandAliases() { return Lists.newArrayList("sc", "sui"); }
 
     @Override
-    public String getCommandUsage(ICommandSender sender) { return "." + getCommandName(); }
+    public String getCommandUsage(ICommandSender sender) { return "/" + getCommandName(); }
 
     @Override
     public int getRequiredPermissionLevel() { return 0; }
@@ -38,32 +41,55 @@ public class Suimands extends CommandBase {
     public void processCommand(ICommandSender sender, String[] args) throws CommandException {
         EntityPlayerSP player = (EntityPlayerSP) sender;
         if (args.length == 0) {
-            player.addChatMessage(new ChatComponentText( "§bSuiChat Help amd Info" + "\n" +
-                    EnumChatFormatting.AQUA + "You are currently running Suichat on version " + ModInfo.VERSION + "." +
-                    EnumChatFormatting.BLUE + "§9--------------------------------------" + "\n" +
-                    EnumChatFormatting.DARK_AQUA + "What's new in Suichat " + ModInfo.VERSION + " ?" + "\n" +
-                    EnumChatFormatting.AQUA + " ➜ §lCustomizability! §r§bYou can now edit bot prefix and bot color!" + "\n" +
-                    EnumChatFormatting.AQUA + "§b ➜ Run \".suichat config\" to open configuration menu." + "\n" +
-                    EnumChatFormatting.BLUE + "§9--------------------------------------" + "\n" +
-                    EnumChatFormatting.AQUA + " .suichat config §l ➡ §fOpen the configuration menu." + "\n" +
-                    EnumChatFormatting.AQUA + " You can also use \".sc\" or \".sui\" as command aliases."
+            player.addChatMessage(new ChatComponentText(  "§bSuiChat Help and Info" + "\n" +
+                    "§bYou are currently running Suichat on version " + ModInfo.VERSION + "." + "\n" +
+                    "§b--------------------------------------" + "\n" +
+                    "§9§l What's new in Suichat " + ModInfo.VERSION + " ?" + "\n" +
+                    "§b ➜ §lCustomizability! §r§bYou can now edit bot prefix and bot color!" + "\n" +
+                    "§b ➜ Run \".suichat config\" to open configuration menu." + "\n" +
+                    "§b--------------------------------------" + "\n" +
+                    "§3.suichat config/cfg §l➡ Open the configuration menu." + "\n" +
+                    "§bYou can also use \"/sc\" or \"/sui\" as command aliases."
             ));
             return;
         }
         String subcommand = args[0].toLowerCase(Locale.ENGLISH);
         switch (subcommand) {
             case "config":
+            case "cfg":
                 ModCore.getInstance().getGuiHandler().open(Suichat.config.gui());
                 break;
             default:
+            case "":
                 player.addChatMessage(new
                         ChatComponentText(
                                 EnumChatFormatting.RED + "[" +
                                 EnumChatFormatting.AQUA + "SUICHAT" +
                                 EnumChatFormatting.RED + "] " +
-                                EnumChatFormatting.GREEN + "Enter something you baldhead!"
+                                EnumChatFormatting.GREEN + "Wrong command you baldhead!"
                         )
                 );
+                break;
+            case "bald":
+            case "fat":
+            case "sex":
+                player.addChatMessage(new
+                                ChatComponentText(
+                                EnumChatFormatting.RED + "[" +
+                                        EnumChatFormatting.AQUA + "SUICHAT" +
+                                        EnumChatFormatting.RED + "] " +
+                                        EnumChatFormatting.GREEN + player.getName() +
+                                        ", no u!"
+                        )
+                );
+                break;
+            case "ez":
+                player.addChatMessage((IChatComponent) new ChatComponentText("§a§lClick here to copy ez.")
+                        .getChatStyle()
+                        .setChatHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ChatComponentText("Clicky!")))
+                        .setChatClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/suichatez"))
+                );
+                break;
         }
     }
 }

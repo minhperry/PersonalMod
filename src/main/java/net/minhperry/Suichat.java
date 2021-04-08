@@ -10,7 +10,10 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minhperry.commands.Suimands;
 import net.minhperry.core.Config;
-import net.minhperry.listener.ChatListener;
+import net.minhperry.listener.DuckListener;
+import net.minhperry.listener.EZListener;
+import net.minhperry.listener.JoinLeaveListener;
+import net.minhperry.listener.SuibotListener;
 
 import java.io.File;
 
@@ -40,7 +43,10 @@ public class Suichat
         ClientCommandHandler.instance.registerCommand(new Suimands());
 
         MinecraftForge.EVENT_BUS.register(this);
-        MinecraftForge.EVENT_BUS.register(new ChatListener());
+        MinecraftForge.EVENT_BUS.register(new SuibotListener());
+        MinecraftForge.EVENT_BUS.register(new JoinLeaveListener());
+        MinecraftForge.EVENT_BUS.register(new EZListener());
+        MinecraftForge.EVENT_BUS.register(new DuckListener());
     }
 
     @EventHandler

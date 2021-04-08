@@ -10,46 +10,85 @@ public class Config extends Vigilant {
 
     @Property(
             type = PropertyType.SELECTOR,
-            name = "Prefix",
-            description = "Prefix for the bot.",
-            category = "Preferences",
-            options = {"BOT", "DISCORD"}
-    )
-    public String prefix = "BOT";
-
-    @Property(
-            type = PropertyType.SELECTOR,
-            name = "Color",
+            name = "Bot Color",
             description = "Color of the bot.",
-            category = "Preferences",
+            category = "Suibot",
+            subcategory = "Addons",
             options = {
-                    "\u00a70BLACK",
-                    "\u00a71DARK_BLUE",
-                    "\u00a72DARK_GREEN",
-                    "\u00a73DARK_AQUA",
-                    "\u00a74DARK_RED",
-                    "\u00a75DARK_PURPLE",
-                    "\u00a76GOLD",
-                    "\u00a77GRAY",
-                    "\u00a78DARK_GRAY",
-                    "\u00a79BLUE",
-                    "\u00a7aGREEN",
-                    "\u00a7bAQUA",
-                    "\u00a7cRED",
-                    "\u00a7dLIGHT_PURPLE",
-                    "\u00a7eYELLOW",
-                    "\u00a7fWHITE"
+                    "§0Black",
+                    "§1Dark Blue",
+                    "§2Dark Green",
+                    "§3Dark Aqua",
+                    "§4Dark Red",
+                    "§5Dark Purple",
+                    "§6Gold",
+                    "§7Gray",
+                    "§8Dark Gray",
+                    "§9Blue",
+                    "§aGreen",
+                    "§bAqua",
+                    "§cRed",
+                    "§dLight Purple",
+                    "§eYellow",
+                    "§fWhite"
             }
     )
     public int colorCode = 13;
 
     @Property(
+            type = PropertyType.SELECTOR,
+            name = "Bot Prefix",
+            description = "Prefix for the bot.",
+            category = "Suibot",
+            subcategory = "Addons",
+            options = {"BOT", "DISCORD", "BRIDGE", "BALD"}
+    )
+    public int prefix = 0;
+
+    @Property(
             type = PropertyType.SWITCH,
             name = "Colon Type",
-            description = "ON for Colon (:), OFF for Arrow (>)",
-            category = "Preferences"
+            description = "ON for Colon (:).\nOFF for Arrow (>).",
+            category = "Suibot",
+            subcategory = "Addons"
     )
     public boolean isColon = true;
+
+    @Property(
+            type = PropertyType.SWITCH,
+            name = "Fancier Guild Join/Leave Message",
+            description = "Tweaks the default guild join/leave message.",
+            category = "Guild Chat",
+            subcategory = "Fix"
+    )
+    public boolean isFancier = false;
+
+    @Property(
+            type = PropertyType.SWITCH,
+            name = "ArabicDuck Hider",
+            description = "Hide all messages from ArabicDuck",
+            category = "Guild Chat",
+            subcategory = "Bald"
+    )
+    public boolean hideDuck = false;
+
+    @Property(
+            type = PropertyType.TEXT,
+            name = "EZ",
+            description = "§b[WIP] §r§fUse \"/suichat ez\" to copy the word into chat.",
+            category = "General Chat",
+            subcategory = "Fix"
+    )
+    public String ez = "";
+
+    @Property(
+            type = PropertyType.SWITCH,
+            name = "Housing Join/Leave Message",
+            description = "Hide the annoying chat messages in Housing.",
+            category = "General Chat",
+            subcategory = "Fix"
+    )
+    public boolean hideHousingMsg = false;
 
     public Config() {
         super(new File("./config/suimod/suifig.toml"));

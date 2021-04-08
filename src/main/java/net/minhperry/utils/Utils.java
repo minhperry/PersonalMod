@@ -1,6 +1,7 @@
 package net.minhperry.utils;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.scoreboard.ScoreObjective;
 
 public class Utils {
 
@@ -20,6 +21,24 @@ public class Utils {
             e.printStackTrace();
             return false;
         }
+    }
+
+    /**
+     * Taken from Danker's Skyblock Mod under GPL 3.0 license
+     * https://github.com/bowser0000/SkyblockMod/blob/master/LICENSE
+     * @author bowser0000
+     */
+    public static boolean checkForGamemode(String gamemode) {
+        if (isOnHypixel()) {
+            ScoreObjective scoreboardObj = mc.theWorld.getScoreboard().getObjectiveInDisplaySlot(1);
+            if (scoreboardObj != null) {
+                String scObjName = ScoreboardUtils.cleanSB(scoreboardObj.getDisplayName());
+                if (scObjName.contains(gamemode)) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
 }
