@@ -84,6 +84,12 @@ public class SuibotListener {
             case 1:
                 botName = "DISCORD";
                 break;
+            case 2:
+                botName = "BRIDGE";
+                break;
+            case 3:
+                botName = "BALD";
+                break;
         }
 
         if (message.startsWith("Guild > [VIP] Suibot [exGM]:")) {

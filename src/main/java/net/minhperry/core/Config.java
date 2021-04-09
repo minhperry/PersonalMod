@@ -74,8 +74,53 @@ public class Config extends Vigilant {
 
     @Property(
             type = PropertyType.SWITCH,
+            name = "Autochat Guild Join Greeting",
+            description = "§b[WIP] §r§fGreet someone when someone joins the guild.",
+            category = "General Chat",
+            subcategory = "Autochat"
+    )
+    public boolean isAutoChatGuildJoin = false;
+
+    @Property(
+            type = PropertyType.SWITCH,
+            name = "Autochat Guild Leave L",
+            description = "§b[WIP] §r§fSay L when someone left the guild.",
+            category = "General Chat",
+            subcategory = "Autochat"
+    )
+    public boolean isAutoChatGuildLeave = false;
+
+    @Property(
+            type = PropertyType.SWITCH,
+            name = "Housing Join/Leave Message",
+            description = "Hide the annoying chat messages in Housing.",
+            category = "Hiders",
+            subcategory = "Housing"
+    )
+    public boolean hideHousingMsg = false;
+
+    @Property(
+            type = PropertyType.SWITCH,
+            name = "\"You are playing on profile\" Hider",
+            description = "Hide all the \"You are playing on profile\" messages in Skyblock.",
+            category = "Hiders",
+            subcategory = "Skyblock"
+    )
+    public boolean hideProfile = false;
+
+    @Property(
+            type = PropertyType.SWITCH,
+            name = "Guild EXP Earned Hider",
+            description = "Hide all the \"You earned ... GEXP\" messages on Hypixel.",
+            category = "Hiders",
+            subcategory = "Hypixel"
+    )
+    public boolean hideGXP = false;
+
+    @Property(
+            type = PropertyType.SWITCH,
             name = "ArabicDuck Hider",
-            description = "Hide all messages from ArabicDuck",
+            description = "Hide all messages from ArabicDuck.",
             category = "Hiders",
             subcategory = "QUADRUPLE SHINY BALD FAT"
     )
@@ -90,14 +135,7 @@ public class Config extends Vigilant {
     )
     public String ez = "";
 
-    @Property(
-            type = PropertyType.SWITCH,
-            name = "Housing Join/Leave Message",
-            description = "Hide the annoying chat messages in Housing.",
-            category = "Hiders",
-            subcategory = "Housing"
-    )
-    public boolean hideHousingMsg = false;
+
 
     public Config() {
         super(new File("./config/suimod/suifig.toml"));
