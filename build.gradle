@@ -18,9 +18,9 @@ apply plugin: 'net.minecraftforge.gradle.forge'
 
 // build.gradle and ModInfo.java and mcmod.info
 
-version = "0.3.1"
-group= "net.minhperry:ecx:0.3.1"
-archivesBaseName = "Suichat"
+version = "0.3.2"
+group= "net.minhperry:ecx:0.3.2"
+archivesBaseName = "ECX"
 sourceCompatibility = targetCompatibility = 1.8
 
 compileJava.options.encoding = "UTF-8"

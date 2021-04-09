@@ -45,12 +45,16 @@ public class Suichat
         MinecraftForge.EVENT_BUS.register(this);
         MinecraftForge.EVENT_BUS.register(new SuibotListener());
         MinecraftForge.EVENT_BUS.register(new JoinLeaveListener());
-        MinecraftForge.EVENT_BUS.register(new EZListener());
+        // MinecraftForge.EVENT_BUS.register(new EZListener());
         MinecraftForge.EVENT_BUS.register(new DuckListener());
+        MinecraftForge.EVENT_BUS.register(new JoinLeaveListener());
     }
 
     @EventHandler
     public void postInit(FMLPostInitializationEvent event) {
-
+        System.out.println("\n\n\n\n\n\n\n\n\n\n");
+        System.out.println("Join Infrared guild to be unbald");
+        System.out.println("discord.gg/irontop");
+        System.out.println("\n\n\n\n\n\n\n\n\n\n");
     }
 }

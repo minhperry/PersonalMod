@@ -2,13 +2,13 @@
   {
     "modid": "ECX",
     "name": "EnhancedChatExperience",
-    "description": "A mod which tweaks the Suibot ingame. For Hypixel Skyblock.",
-    "version": "0.3.0",
+    "description": "A mod which tweaks the Suibot ingame. For Hypixel.",
+    "version": "0.3.2",
     "mcversion": "1.8.9",
-    "url": "",
+    "url": "https://github.com/minhperry/ECX",
     "updateUrl": "",
     "authorList": ["minhperry02#2803","minhperry02"],
-    "credits": "",
+    "credits": "Skytils devs, Dankers",
     "logoFile": "",
     "screenshots": [],
     "dependencies": []
