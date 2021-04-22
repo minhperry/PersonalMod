@@ -14,9 +14,17 @@ public class DuckListener {
     public void onMessageReceived(final ClientChatReceivedEvent event) {
         if (Suichat.config.hideDuck) {
             String unformatted = StringUtils.stripControlCodes(event.message.getUnformattedText());
-            if (unformatted.contains("ArabicDuck")) {
+            if (unformatted.contains("ArabicDuck") && unformatted.startsWith("Guild >")) {
                 event.setCanceled(true);
             }
         }
+
+        if (Suichat.config.hideAndrew) {
+            String unformatted = StringUtils.stripControlCodes(event.message.getUnformattedText());
+            if (unformatted.contains("andrewdungeons") && unformatted.startsWith("Guild >")) {
+                event.setCanceled(true);
+            }
+        }
+
     }
 }

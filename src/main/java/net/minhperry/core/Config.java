@@ -12,7 +12,7 @@ public class Config extends Vigilant {
             type = PropertyType.SELECTOR,
             name = "Bot Color",
             description = "Color of the bot.",
-            category = "Suibot",
+            category = "Chat Bridge",
             subcategory = "Addons",
             options = {
                     "§0Black",
@@ -39,9 +39,9 @@ public class Config extends Vigilant {
             type = PropertyType.SELECTOR,
             name = "Bot Prefix",
             description = "Prefix for the bot.",
-            category = "Suibot",
+            category = "Chat Bridge",
             subcategory = "Addons",
-            options = {"BOT", "DISCORD", "BRIDGE", "BALD"}
+            options = {"BOT", "DISCORD", "BRIDGE", "BALD", "TV", "IR"}
     )
     public int prefix = 0;
 
@@ -49,7 +49,7 @@ public class Config extends Vigilant {
             type = PropertyType.SWITCH,
             name = "Colon Type",
             description = "ON for Colon (:).\nOFF for Arrow (>).",
-            category = "Suibot",
+            category = "Chat Bridge",
             subcategory = "Addons"
     )
     public boolean isColon = true;
@@ -102,7 +102,7 @@ public class Config extends Vigilant {
     @Property(
             type = PropertyType.SWITCH,
             name = "\"You are playing on profile\" Hider",
-            description = "Hide all the \"You are playing on profile\" messages in Skyblock.",
+            description = "§b[WIP] §r§fHide all the \"You are playing on profile\" messages in Skyblock.",
             category = "Hiders",
             subcategory = "Skyblock"
     )
@@ -111,7 +111,7 @@ public class Config extends Vigilant {
     @Property(
             type = PropertyType.SWITCH,
             name = "Guild EXP Earned Hider",
-            description = "Hide all the \"You earned ... GEXP\" messages on Hypixel.",
+            description = "§b[WIP] §r§fHide all the \"You earned ... GEXP\" messages on Hypixel.",
             category = "Hiders",
             subcategory = "Hypixel"
     )
@@ -122,9 +122,18 @@ public class Config extends Vigilant {
             name = "ArabicDuck Hider",
             description = "Hide all messages from ArabicDuck.",
             category = "Hiders",
-            subcategory = "QUADRUPLE SHINY BALD FAT"
+            subcategory = "Infrared"
     )
     public boolean hideDuck = false;
+
+    @Property(
+            type = PropertyType.SWITCH,
+            name = "andrewdungeons Hider",
+            description = "Hide all messages from andrewdungeons.",
+            category = "Hiders",
+            subcategory = "Terminal Velocity"
+    )
+    public boolean hideAndrew = false;
 
     @Property(
             type = PropertyType.TEXT,
@@ -134,8 +143,6 @@ public class Config extends Vigilant {
             subcategory = "Tweaks"
     )
     public String ez = "";
-
-
 
     public Config() {
         super(new File("./config/suimod/suifig.toml"));
