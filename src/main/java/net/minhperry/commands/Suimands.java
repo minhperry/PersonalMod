@@ -21,10 +21,10 @@ import java.util.Locale;
 public class Suimands extends CommandBase {
 
     @Override
-    public String getCommandName() { return "suichat"; }
+    public String getCommandName() { return "bridgechat"; }
 
     @Override
-    public List<String> getCommandAliases() { return Lists.newArrayList("sc", "sui"); }
+    public List<String> getCommandAliases() { return Lists.newArrayList("bc", "bchat"); }
 
     @Override
     public String getCommandUsage(ICommandSender sender) { return "/" + getCommandName(); }
@@ -42,14 +42,16 @@ public class Suimands extends CommandBase {
         EntityPlayerSP player = (EntityPlayerSP) sender;
         if (args.length == 0) {
             player.addChatMessage(new ChatComponentText(  "§bSuiChat Help and Info" + "\n" +
-                    "§bYou are currently running Suichat on version " + ModInfo.VERSION + "." + "\n" +
+                    "§bYou are currently running ECX on version " + ModInfo.VERSION + "." + "\n" +
                     "§b--------------------------------------" + "\n" +
-                    "§9§l What's new in Suichat " + ModInfo.VERSION + " ?" + "\n" +
+                    "§9§l What's new in ECX " + ModInfo.VERSION + " ?" + "\n" +
                     "§b ➜ Added message hiders." + "\n" +
                     "§b ➜ Tweaks Hypixel's default friend/guild join/leave messages." + "\n" +
+                    "§b ➜ Added support for Terminal Velocity guild, while still " + "\n" +
+                    "§b maintaining support for Infrared guild." + "\n" +
                     "§b--------------------------------------" + "\n" +
-                    "§3/suichat config/cfg §l➡ Open the configuration menu." + "\n" +
-                    "§bYou can also use \"/sc\" or \"/sui\" as command aliases."
+                    "§3/bridgechat config/cfg §l➡ Open the configuration menu." + "\n" +
+                    "§bYou can also use \"/bc\" or \"/bchat\" as command aliases."
             ));
             return;
         }
