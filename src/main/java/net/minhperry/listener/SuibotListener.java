@@ -88,17 +88,11 @@ public class SuibotListener {
                 botName = "BRIDGE";
                 break;
             case 3:
-                botName = "BALD";
-                break;
-            case 4:
-                botName = "TV";
-                break;
-            case 5:
                 botName = "IR";
                 break;
         }
 
-        if (message.startsWith("Guild > [VIP] Suibot [exGM]:") || message.startsWith("Guild > AdamLip4 [S]:")) {
+        if (message.startsWith("Guild > [VIP+] InfraBot [Helper]:")) {
             event.setCanceled(true);
 
             String[] msg = message.trim().split("\\s*:\\s*");
