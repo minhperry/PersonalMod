@@ -17,11 +17,22 @@ public class JoinLeaveListener {
     public void onMessageReceived(final ClientChatReceivedEvent event) {
 
         // Guild
+        isGuild:
         if (Suichat.config.isGuildFancier) {
             String message = StringUtils.stripControlCodes(event.message.getUnformattedText());
             if (message.endsWith("joined.") || message.endsWith("left.")) {
                 if (message.startsWith("Guild")) {
-                    event.setCanceled(true);
+
+                    if (message.endsWith("joined.")) {
+                        if (message.substring(7, message.length() - 7).split(" ").length == 1)
+                            event.setCanceled(true);
+                    } else if (message.endsWith("left.")) {
+                        if (message.substring(7, message.length() - 5).split(" ").length == 1)
+                            event.setCanceled(true);
+                    } else {
+                        break isGuild;
+                    }
+
 
                     String[] msg = event.message.getFormattedText().split(" ");
                     String user = msg[2];
@@ -37,6 +48,30 @@ public class JoinLeaveListener {
                 }
             }
         }
+
+        // IN RECONSIDERATION
+        /*
+        if (Suichat.config.isGuildFancier) {
+            String message = StringUtils.stripControlCodes(event.message.getUnformattedText());
+
+            String indicator;
+
+            // 7 -> l-5 = left.     7 -> l-7 = joined.
+            if (
+                    message.substring(7, message.length() - 5).split(" ").length == 1
+            ) { // left.
+                indicator = "§c-";
+            } else { // joined
+                indicator = "§c+";
+            }
+
+            String[] msg = event.message.getFormattedText().split(" ");
+            String user = msg[2];
+
+            String finalMsg = "§2Guild > §f[" + indicator + "§f] " + user;
+            mc.thePlayer.addChatMessage(new ChatComponentText(finalMsg));
+        }
+        */
 
         // Friend
         if (Suichat.config.isFriendFancier) {

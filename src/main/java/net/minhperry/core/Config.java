@@ -1,7 +1,8 @@
 package net.minhperry.core;
 
-import club.sk1er.vigilance.Vigilant;
-import club.sk1er.vigilance.data.*;
+import gg.essential.vigilance.Vigilant;
+import gg.essential.vigilance.data.*;
+
 import net.minecraft.util.EnumChatFormatting;
 
 import java.io.File;
@@ -9,50 +10,70 @@ import java.io.File;
 public class Config extends Vigilant {
 
     @Property(
-            type = PropertyType.SELECTOR,
+            type = PropertyType.SLIDER,
             name = "Bot Color",
-            description = "Color of the bot.",
+            description = "Color of the bot",
             category = "Chat Bridge",
             subcategory = "Addons",
-            options = {
-                    "§0Black",
-                    "§1Dark Blue",
-                    "§2Dark Green",
-                    "§3Dark Aqua",
-                    "§4Dark Red",
-                    "§5Dark Purple",
-                    "§6Gold",
-                    "§7Gray",
-                    "§8Dark Gray",
-                    "§9Blue",
-                    "§aGreen",
-                    "§bAqua",
-                    "§cRed",
-                    "§dLight Purple",
-                    "§eYellow",
-                    "§fWhite"
-            }
+            min = 0, max = 15
     )
-    public int colorCode = 13;
+    public int colorNumber = 13;
 
     @Property(
-            type = PropertyType.SELECTOR,
+            type = PropertyType.TEXT,
+            name = "Color helper",
+            description = "Colors: \n§00 §11 §22 §33 §44 §55 §66 §77 \n §88 §99 §a10 §b11 §c12 §d13 §e14 §f15",
+            category = "Chat Bridge",
+            subcategory = "Addons"
+    )
+    public String empty = "";
+
+    @Property(
+            type = PropertyType.TEXT,
             name = "Bot Prefix",
             description = "Prefix for the bot.",
             category = "Chat Bridge",
             subcategory = "Addons",
-            options = {"BOT", "DISCORD", "BRIDGE", "BALD", "TV", "IR"}
+            placeholder = "Put your bot prefix here!"
     )
-    public int prefix = 0;
+    public String botPrefix = "BOT";
 
     @Property(
-            type = PropertyType.SWITCH,
-            name = "Colon Type",
-            description = "ON for Colon (:).\nOFF for Arrow (>).",
+            type = PropertyType.TEXT,
+            name = "Bot Name",
+            description = "Name of the bot to be replaced.",
             category = "Chat Bridge",
             subcategory = "Addons"
     )
-    public boolean isColon = true;
+    public String botName = "InfraBot";
+
+    @Property(
+            type = PropertyType.TEXT,
+            name = "Seperator",
+            description = "Seperator between the sender and the message. Default is \">\".",
+            category = "Chat Bridge",
+            subcategory = "Addons"
+    )
+    public String seperator = ">";
+
+    @Property(
+            type = PropertyType.SWITCH,
+            name = "Gonb Supermacy",
+            description = "Give every gonb a special color.",
+            category = "Chat Bridge",
+            subcategory = "Gonb"
+    )
+    public boolean isGonbSupermacy = false;
+
+    @Property(
+            type = PropertyType.SLIDER,
+            name = "Gonb Color",
+            description = "Color of the gonbs",
+            category = "Chat Bridge",
+            subcategory = "Gonb",
+            min = 0, max = 15
+    )
+    public int gonbColor = 12;
 
     @Property(
             type = PropertyType.SWITCH,
@@ -74,24 +95,6 @@ public class Config extends Vigilant {
 
     @Property(
             type = PropertyType.SWITCH,
-            name = "Autochat Guild Join Greeting",
-            description = "§b[WIP] §r§fGreet someone when someone joins the guild.",
-            category = "General Chat",
-            subcategory = "Autochat"
-    )
-    public boolean isAutoChatGuildJoin = false;
-
-    @Property(
-            type = PropertyType.SWITCH,
-            name = "Autochat Guild Leave L",
-            description = "§b[WIP] §r§fSay L when someone left the guild.",
-            category = "General Chat",
-            subcategory = "Autochat"
-    )
-    public boolean isAutoChatGuildLeave = false;
-
-    @Property(
-            type = PropertyType.SWITCH,
             name = "Housing Join/Leave Message",
             description = "Hide the annoying chat messages in Housing.",
             category = "Hiders",
@@ -99,54 +102,12 @@ public class Config extends Vigilant {
     )
     public boolean hideHousingMsg = false;
 
-    @Property(
-            type = PropertyType.SWITCH,
-            name = "\"You are playing on profile\" Hider",
-            description = "§b[WIP] §r§fHide all the \"You are playing on profile\" messages in Skyblock.",
-            category = "Hiders",
-            subcategory = "Skyblock"
-    )
-    public boolean hideProfile = false;
-
-    @Property(
-            type = PropertyType.SWITCH,
-            name = "Guild EXP Earned Hider",
-            description = "§b[WIP] §r§fHide all the \"You earned ... GEXP\" messages on Hypixel.",
-            category = "Hiders",
-            subcategory = "Hypixel"
-    )
-    public boolean hideGXP = false;
-
-    @Property(
-            type = PropertyType.SWITCH,
-            name = "ArabicDuck Hider",
-            description = "Hide all messages from ArabicDuck.",
-            category = "Hiders",
-            subcategory = "Infrared"
-    )
-    public boolean hideDuck = false;
-
-    @Property(
-            type = PropertyType.SWITCH,
-            name = "andrewdungeons Hider",
-            description = "Hide all messages from andrewdungeons.",
-            category = "Hiders",
-            subcategory = "Terminal Velocity"
-    )
-    public boolean hideAndrew = false;
-
-    @Property(
-            type = PropertyType.TEXT,
-            name = "EZ",
-            description = "§b[DISABLED] §r§fUse \"/suichat ez\" to copy the word into chat.",
-            category = "General Chat",
-            subcategory = "Tweaks"
-    )
-    public String ez = "";
-
     public Config() {
-        super(new File("./config/suimod/suifig.toml"));
+        super(new File("./config/suimod/config.toml"));
         initialize();
+        // Class clz = Config.class;
+        // addDependency("isGonbSupermacy", clz.getDeclaredField("gonbColor"));
     }
+
 
 }

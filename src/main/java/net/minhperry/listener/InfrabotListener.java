@@ -3,27 +3,25 @@ package net.minhperry.listener;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.StringUtils;
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minhperry.Suichat;
+import net.minhperry.core.Config;
 import net.minhperry.utils.Utils;
 
-public class SuibotListener {
+public class InfrabotListener {
 
     public static Minecraft mc = Minecraft.getMinecraft();
+    public static Config cfg = Suichat.config;
 
     @SubscribeEvent(receiveCanceled = true, priority = EventPriority.HIGHEST)
     public void onMessageReceived(final ClientChatReceivedEvent event) {
 
         if (!Utils.isOnHypixel()) return;
 
-        final String message = StringUtils.stripControlCodes(event.message.getUnformattedText());
-
-        String colon = Suichat.config.isColon ? " : " : " > ";
         EnumChatFormatting botColor;
-        switch (Suichat.config.colorCode) {
+        switch (Suichat.config.colorNumber) {
             case 0:
                 botColor = EnumChatFormatting.BLACK;
                 break;
@@ -75,41 +73,68 @@ public class SuibotListener {
                 break;
         }
 
-        String botName;
-        switch (Suichat.config.prefix) {
-            case 0:
-            default:
-                botName = "BOT";
-                break;
-            case 1:
-                botName = "DISCORD";
-                break;
-            case 2:
-                botName = "BRIDGE";
-                break;
-            case 3:
-                botName = "IR";
-                break;
-        }
+        final String message = Utils.removeColorCodes(event.message.getFormattedText())
+                .substring(7)
+                .replaceAll("\\[.*?\\]","");
 
-        if (message.startsWith("Guild > [VIP+] InfraBot [Helper]:")) {
+        String[] args = message.split(" ");
+
+        String name = Suichat.config.botName.toLowerCase();
+
+        if (args[0].toLowerCase().equals(name)
+                || args[1].toLowerCase().equals(name)
+                || args[0].toLowerCase().equals(name + ":")
+                || args[1].toLowerCase().equals(name + ":")
+        ) {
             event.setCanceled(true);
 
-            String[] msg = message.trim().split("\\s*:\\s*");
-            String sender = botColor + "[" + botName + "] " + msg[1] + "§f";
-            String guild = "§2Guild > ";
-            String splittedMessages = "";
+            String[] args2 = message.split(":");
 
-            for (int i = 2; i < msg.length; i++) {
-                if (i == msg.length - 1)
-                    splittedMessages = splittedMessages.concat(msg[i]);
-                else
-                    splittedMessages = splittedMessages.concat(msg[i]).concat(": ");
+            String name2 = args2[1].substring(3);
+
+            String messageReal = "";
+
+            for (int i = 2; i < args2.length; i++) {
+                messageReal += args2[i];
+
+                if (i + 1 != args2.length) {
+                    messageReal += ":";
+                }
             }
 
-            final String toSend = guild + sender + colon + splittedMessages;
+            messageReal = messageReal.substring(1);
+
+            if (cfg.isGonbSupermacy) {
+                messageReal = messageReal
+                        .replace("gonb", cfg.gonbColor + "gonb§f")
+                        .replace("gnob", cfg.gonbColor + "gnob§f");
+            }
+
+
+            String nameReal = "";
+            String[] argsName = name2.split(" ");
+
+            for (int i = 0; i < argsName.length; i++) {
+                nameReal += botColor + argsName[i];
+                if (i + 1 != argsName.length) {
+                    nameReal += " ";
+                }
+            }
+
+            if (cfg.isGonbSupermacy) {
+                nameReal = nameReal
+                        .replace("gonb", cfg.gonbColor + "gonb§f")
+                        .replace("gnob", cfg.gonbColor + "gnob§f");
+            }
+
+            String toSend = "&r&2Guild &2> "
+                    + botColor + "[" + cfg.botPrefix + botColor + "] "
+                    + botColor + nameReal + "§r: §r" + messageReal;
 
             mc.thePlayer.addChatMessage(new ChatComponentText(toSend));
         }
+
+
     }
+
 }

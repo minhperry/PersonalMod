@@ -6,6 +6,10 @@ buildscript {
             url = "http://files.minecraftforge.net/maven"
         }
 
+        maven {
+            url = "https://repo.sk1er.club/repository/maven-public"
+        }
+
         // search through the 'libs' folder
         flatDir dirs: 'libs'
     }
@@ -18,8 +22,8 @@ apply plugin: 'net.minecraftforge.gradle.forge'
 
 // build.gradle and ModInfo.java and mcmod.info
 
-version = "0.3.3"
-group= "net.minhperry:ecx:0.3.2"
+version = "0.4.0"
+group= "net.minhperry:ecx:0.4.0"
 archivesBaseName = "ECX"
 sourceCompatibility = targetCompatibility = 1.8
 
@@ -33,9 +37,14 @@ minecraft {
     makeObfSourceJar = false
 }
 
+repositories {
+    maven { url "https://repo.sk1er.club/repository/maven-public" }
+}
+
 dependencies {
     // include modcore as a dependency
-    provided files("libs/modcore.jar")
+    // provided files("libs/modcore.jar")
+    implementation "gg.essential:vigilance-1.8.9-forge:190+mc-1.18"
 }
 
 processResources {
