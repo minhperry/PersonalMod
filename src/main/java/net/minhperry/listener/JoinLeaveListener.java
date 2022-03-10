@@ -17,36 +17,24 @@ public class JoinLeaveListener {
     public void onMessageReceived(final ClientChatReceivedEvent event) {
 
         // Guild
-        isGuild:
         if (Suichat.config.isGuildFancier) {
             String message = StringUtils.stripControlCodes(event.message.getUnformattedText());
-            if (message.endsWith("joined.") || message.endsWith("left.")) {
-                if (message.startsWith("Guild")) {
 
-                    if (message.endsWith("joined.")) {
-                        if (message.substring(7, message.length() - 7).split(" ").length == 1)
-                            event.setCanceled(true);
-                    } else if (message.endsWith("left.")) {
-                        if (message.substring(7, message.length() - 5).split(" ").length == 1)
-                            event.setCanceled(true);
-                    } else {
-                        break isGuild;
-                    }
+            String indicator = "";
 
+            if (Utils.isMatch(message, "Guild > ([\\w]+) left."))
+                indicator = "§c-";
+            if (Utils.isMatch(message, "Guild > ([\\w]+) joined."))
+                indicator = "§a+";
 
-                    String[] msg = event.message.getFormattedText().split(" ");
-                    String user = msg[2];
-                    String indicator;
+            // format
+            // Guild > Name activity.
 
-                    if (message.endsWith("joined."))
-                        indicator = "§a+";
-                    else
-                        indicator = "§c-";
+            String msg[] = event.message.getFormattedText().split(" ");
+            String user = msg[2];
 
-                    String finalMsg = "§2Guild > §f[" + indicator + "§f] " + user;
-                    mc.thePlayer.addChatMessage(new ChatComponentText(finalMsg));
-                }
-            }
+            String finalMsg = "§2Guild > §f[" + indicator + "§f] " + user;
+            mc.thePlayer.addChatMessage(new ChatComponentText(finalMsg));
         }
 
         // IN RECONSIDERATION
@@ -76,23 +64,22 @@ public class JoinLeaveListener {
         // Friend
         if (Suichat.config.isFriendFancier) {
             String message = StringUtils.stripControlCodes(event.message.getUnformattedText());
-            if (message.endsWith("joined.") || message.endsWith("left.")) {
-                if (message.startsWith("Friend")) {
-                    event.setCanceled(true);
 
-                    String[] msg = event.message.getFormattedText().split(" ");
-                    String user = msg[2];
-                    String indicator;
+            String indicator = "";
 
-                    if (message.endsWith("joined."))
-                        indicator = "§a+";
-                    else
-                        indicator = "§c-";
+            if (Utils.isMatch(message, "Friend > ([\\w]+) left."))
+                indicator = "§c-";
+            if (Utils.isMatch(message, "Friend > ([\\w]+) joined."))
+                indicator = "§a+";
 
-                    String finalMsg = "§aFriend > §f[" + indicator + "§f] " + user;
-                    mc.thePlayer.addChatMessage(new ChatComponentText(finalMsg));
-                }
-            }
+            // format
+            // Guild > Name activity.
+
+            String msg[] = event.message.getFormattedText().split(" ");
+            String user = msg[2];
+
+            String finalMsg = "§2Guild > §f[" + indicator + "§f] " + user;
+            mc.thePlayer.addChatMessage(new ChatComponentText(finalMsg));
         }
 
         // Housing

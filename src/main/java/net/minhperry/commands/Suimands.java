@@ -21,10 +21,10 @@ import java.util.Locale;
 public class Suimands extends CommandBase {
 
     @Override
-    public String getCommandName() { return "bridgechat"; }
+    public String getCommandName() { return "personalmod"; }
 
     @Override
-    public List<String> getCommandAliases() { return Lists.newArrayList("bc", "bchat"); }
+    public List<String> getCommandAliases() { return Lists.newArrayList("pm", "pmod"); }
 
     @Override
     public String getCommandUsage(ICommandSender sender) { return "/" + getCommandName(); }
@@ -41,17 +41,10 @@ public class Suimands extends CommandBase {
     public void processCommand(ICommandSender sender, String[] args) throws CommandException {
         EntityPlayerSP player = (EntityPlayerSP) sender;
         if (args.length == 0) {
-            player.addChatMessage(new ChatComponentText(  "§bSuiChat Help and Info" + "\n" +
-                    "§bYou are currently running ECX on version " + ModInfo.VERSION + "." + "\n" +
-                    "§b--------------------------------------" + "\n" +
-                    "§9§l What's new in ECX " + ModInfo.VERSION + " ?" + "\n" +
-                    "§b ➜ Added message hiders." + "\n" +
-                    "§b ➜ Tweaks Hypixel's default friend/guild join/leave messages." + "\n" +
-                    "§b ➜ Added support for Terminal Velocity guild, while still " + "\n" +
-                    "§b maintaining support for Infrared guild." + "\n" +
-                    "§b--------------------------------------" + "\n" +
-                    "§3/bridgechat config/cfg §l➡ Open the configuration menu." + "\n" +
-                    "§bYou can also use \"/bc\" or \"/bchat\" as command aliases."
+            player.addChatMessage(new ChatComponentText(  "§bHelp and Info" + "\n" +
+                    "§bCurrent mod version: " + ModInfo.VERSION + "." + "\n" +
+                    "§3/" + getCommandName() + " config/cfg/cf §l➡ Open the configuration menu." + "\n" +
+                    "§bYou can also use \"/pm\" or \"/pmod\" as command aliases."
             ));
             return;
         }
@@ -66,10 +59,7 @@ public class Suimands extends CommandBase {
             case "":
                 player.addChatMessage(new
                         ChatComponentText(
-                                EnumChatFormatting.RED + "[" +
-                                EnumChatFormatting.AQUA + "SUICHAT" +
-                                EnumChatFormatting.RED + "] " +
-                                EnumChatFormatting.GREEN + "Wrong command you baldhead!"
+                                EnumChatFormatting.RED + "\\/!\\\\ Wrong command you baldhead!"
                         )
                 );
                 break;
@@ -78,24 +68,25 @@ public class Suimands extends CommandBase {
             case "sex":
                 player.addChatMessage(new
                                 ChatComponentText(
-                                EnumChatFormatting.RED + "[" +
-                                        EnumChatFormatting.AQUA + "SUICHAT" +
-                                        EnumChatFormatting.RED + "] " +
                                         EnumChatFormatting.GREEN + player.getName() +
                                         ", no u!"
                         )
                 );
                 break;
-            case "ez":
-                /*
-                player.addChatMessage((IChatComponent) new ChatComponentText("§a§lClick here to copy ez.")
-                        .getChatStyle()
-                        .setChatHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ChatComponentText("Clicky!")))
-                        .setChatClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/suichatez"))
-                );
-                 */
-                player.addChatMessage(new ChatComponentText("§cThis command is currently disabled"));
-                break;
+            case "setkey":
+                player.addChatMessage(new ChatComponentText(
+                        EnumChatFormatting.YELLOW + "Set Hypixel API key for the IronmanAuction module."
+                ));
+                if (args.length == 2) {
+                    Suichat.config.APIKey = args[1];
+                    player.addChatMessage(new ChatComponentText(
+                            EnumChatFormatting.AQUA + "API Key set to " + Suichat.config.APIKey + "."
+                    ));
+                }
+                else
+                    player.addChatMessage(new ChatComponentText(
+                            EnumChatFormatting.RED + "Type something you stupid."
+                    ));
         }
     }
 }

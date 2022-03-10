@@ -44,7 +44,7 @@ repositories {
 dependencies {
     // include modcore as a dependency
     // provided files("libs/modcore.jar")
-    implementation "gg.essential:vigilance-1.8.9-forge:190+mc-1.18"
+    implementation "gg.essential:vigilance-1.8.9-forge:189"
 }
 
 processResources {

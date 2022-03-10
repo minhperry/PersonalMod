@@ -1,13 +1,13 @@
 [
   {
-    "modid": "ECX",
-    "name": "EnhancedChatExperience",
-    "description": "A mod which tweaks the Suibot ingame. For Hypixel.",
-    "version": "0.4.0",
+    "modid": "pmod",
+    "name": "PersonalMod",
+    "description": "Personal mod for myself",
+    "version": "0.4.1",
     "mcversion": "1.8.9",
     "url": "https://github.com/minhperry/ECX",
     "updateUrl": "",
-    "authorList": ["minhperry02#2803","minhperry02"],
+    "authorList": ["minhperry#2803","minhperry02"],
     "credits": ["Skytils", "Dankers", "suicidejerk"],
     "logoFile": "",
     "screenshots": [],

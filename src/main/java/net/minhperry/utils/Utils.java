@@ -5,6 +5,9 @@ import net.minecraft.scoreboard.ScoreObjective;
 import net.minecraft.util.StringUtils;
 import scala.swing.TextComponent;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 
 public class Utils {
 
@@ -23,6 +26,15 @@ public class Utils {
 
     public static String removeColorCodesRegex(String fromString) {
         return fromString.replaceAll("(?i)[&,§][0-9A-FK-OR]", "");
+    }
+
+    public static boolean isMatch(String input, String pattern) {
+        // Compile regular expression
+        Pattern pt = Pattern.compile(pattern, Pattern.CASE_INSENSITIVE);
+        // Match regex against input
+        Matcher matcher = pt.matcher(input);
+        // Use results...
+        return matcher.matches();
     }
 
     /*
